@@ -56,9 +56,11 @@ Vue.createApp({
                 });
         },
         openProductModal(id) {
-            this.productId = id;
-            this.$refs.userProductModal.openModal();
-
+            axios.get(`${apiUrl}/api/${api_path}/product/${id}`)
+                .then((res) => {
+                    this.product = res.data.product;
+                    this.$refs.userProductModal.openModal();
+                });
         },
         getCart() {
             axios.get(`${apiUrl}/api/${api_path}/cart`).then((res) => {
@@ -109,7 +111,7 @@ Vue.createApp({
         },
         updateCartItem(item) {
             const data = {
-                products_id: item.id,
+                product_id: item.product.id,
                 qty: item.qty,
             };
             this.isLoadingItem = item.id;

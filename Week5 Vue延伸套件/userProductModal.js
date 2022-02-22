@@ -31,7 +31,7 @@ export default {
       this.modal.hide();
     },
     addToCart() {
-      this.$emit('add-cart', this.product.id, this.qty);
+      this.$emit('add-to-cart', this.product.id, this.qty);
     }
   },
 }
